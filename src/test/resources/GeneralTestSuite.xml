@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="MyHit suite" verbose="10">
+	<suite-files>
+		<!-- Firefox test suite -->
+		<suite-file path="FirefoxTestSuite.xml" />
+		<!-- Chrome test suite -->
+		<suite-file path="ChromeTestSuite.xml" />
+	</suite-files>
+</suite>
