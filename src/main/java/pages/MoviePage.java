@@ -2,8 +2,6 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.internal.Coordinates;
-import org.openqa.selenium.internal.Locatable;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -17,17 +15,12 @@ public class MoviePage {
 		this.webDriver = webDriver;
 	}
 
-	@FindBy(how = How.XPATH, using = "html/body/div[3]/div/div[2]/ul[3]/li/a[1]")
+	@FindBy(how = How.XPATH, using = "html/body/div[3]/div/div[2]/h1")
 	@CacheLookup
-	public WebElement firstMainActor;
+	public WebElement movieHeader;
 
-	public void scrollToActorsList() {
-		Coordinates coords = ((Locatable) firstMainActor).getCoordinates();
-		coords.inViewPort();
-	}
-
-	public void clickingOnFirstActor() {
-		firstMainActor.click();
+	public String getTextOfMovieHeader() {
+		return movieHeader.getText();
 	}
 
 }

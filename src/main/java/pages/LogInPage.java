@@ -19,6 +19,10 @@ public class LogInPage {
 	@CacheLookup
 	public WebElement loginButton;
 
+	@FindBy(how = How.ID, using = "myModalLabel")
+	@CacheLookup
+	public WebElement loginModalHeading;
+
 	@FindBy(how = How.XPATH, using = ".//*[@id='login']")
 	@CacheLookup
 	public WebElement loginField;
@@ -33,6 +37,10 @@ public class LogInPage {
 
 	public void clickOnLoginButton() {
 		loginButton.click();
+	}
+
+	public String getLoginModalHeadingText() {
+		return loginModalHeading.getText();
 	}
 
 	public void fillLoginField(String name) {

@@ -9,7 +9,7 @@ public class WebDriverFactory {
 	private static final String FIREFOX = "firefox";
 
 	private static WebDriver webDriver;
-	
+
 	private WebDriverFactory() {
 
 	}
@@ -18,7 +18,7 @@ public class WebDriverFactory {
 		if (webDriver == null) {
 			if (CHROME.equals(browser)) {
 				setChromeDriver();
-				webDriver = new ChromeDriver();	
+				webDriver = new ChromeDriver();
 			} else if (FIREFOX.equals(browser)) {
 				webDriver = new FirefoxDriver();
 			} else {
@@ -47,8 +47,8 @@ public class WebDriverFactory {
 			chromeBinaryPath.append("chrome-mac/chromedriver");
 		} else
 			throw new RuntimeException("Your OS is invalid for webdriver tests");
-		
+
 		System.setProperty("webdriver.chrome.driver", chromeBinaryPath.toString());
 	}
-	
+
 }

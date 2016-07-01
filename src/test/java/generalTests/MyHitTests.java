@@ -1,7 +1,8 @@
 package generalTests;
 
-import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.sikuli.script.FindFailed;
 import org.sikuli.script.Pattern;
 import org.sikuli.script.Screen;
@@ -9,89 +10,138 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import baseTest.BaseTest;
-import pages.ActorPage;
 import pages.GeneralSearchPage;
 import pages.LogInPage;
 import pages.MoviePage;
+import pages.ActorPage;
 import ru.yandex.qatools.allure.annotations.Step;
 
 public class MyHitTests extends BaseTest {
 
 	@DataProvider(name = "loginCredentials")
 	public Object[][] getLoginData() {
-		return new Object[][] { { "TestAccount1", "1q2w3e4r5t6y" },
-				// { "testalya@yahoo.com", "1q2w3e4r5t6y" }
-		};
+		return new Object[][] { { "TestAccount1", "1q2w3e4r5t6y" }, { "testalya@yahoo.com", "1q2w3e4r5t6y" } };
 	}
 
 	@Test(dataProvider = "loginCredentials")
 	public void login(String name, String pass) {
 		generateReport();
+
+		webDriver.get("https://my-hit.org");
 		LogInPage page = PageFactory.initElements(webDriver, LogInPage.class);
 
 		page.clickOnLoginButton();
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+
+		WebDriverWait wait = new WebDriverWait(webDriver, 10);
+		wait.until(ExpectedConditions.visibilityOf(page.loginField));
 
 		Assert.assertTrue(page.loginField.isDisplayed());
+		String loginModalHeading = page.getLoginModalHeadingText();
+		Assert.assertEquals(loginModalHeading, "Вход или регистрация");
+
 		page.fillLoginField(name);
 		page.fillPasswordField(pass);
 		page.clickOnSubmitButton();
+
 	}
 
 	@Test
-	public void searchForMovie() {
+	public void findMovieBySearchField() {
 		generateReport();
+
+		webDriver.get("https://my-hit.org");
 		GeneralSearchPage page = PageFactory.initElements(webDriver, GeneralSearchPage.class);
-		webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		MoviePage moviePage = PageFactory.initElements(webDriver, MoviePage.class);
+
+		WebDriverWait wait = new WebDriverWait(webDriver, 10);
+		wait.until(ExpectedConditions.visibilityOf(page.searchBar));
 
 		page.clickOnSearch();
-		page.typeIntoSearchField();
+		page.typeIntoSearchField("Black Mirror");
+
+		String producerName = page.getProducerNameText();
+		Assert.assertEquals(producerName, "Отто Баферст");
+
+		page.clickOnMovieHeading();
+
+		String movieHeader = moviePage.getTextOfMovieHeader();
+		Assert.assertEquals(movieHeader, "Черное зеркало (1-3 сезон)");
 	}
 
-	@Test(dependsOnMethods = { "searchForMovie" })
-	public void findMovieByImg() {
+	@Test
+	public void searchMovieByDropDownMenuAndFilters() {
 		generateReport();
+
+		webDriver.get("https://my-hit.org");
+		GeneralSearchPage page = PageFactory.initElements(webDriver, GeneralSearchPage.class);
+
+		page.clickOnTvSeriasButton();
+		WebDriverWait wait = new WebDriverWait(webDriver, 10);
+		wait.until(ExpectedConditions.visibilityOf(page.tvSeriesDropdown));
+		Assert.assertTrue(page.tvSeriesDropdown.isDisplayed());
+
+		page.clickOnPsychologicalMovieType();
+		String filteredPageTitle = webDriver.getTitle();
+		Assert.assertEquals(filteredPageTitle, "Сериалы онлайн: жанр - психологический.");
+
+		page.selectPopularFilter();
+		page.clickOnSelectDownButton();
+		page.selectForAllTimeFilter();
+
+	}
+
+	@Test
+	public void findActorBySearchField() {
+		generateReport();
+
+		webDriver.get("https://my-hit.org");
+		GeneralSearchPage page = PageFactory.initElements(webDriver, GeneralSearchPage.class);
+
+		WebDriverWait wait = new WebDriverWait(webDriver, 10);
+		wait.until(ExpectedConditions.visibilityOf(page.searchBar));
+
+		page.clickOnSearch();
+		page.typeIntoSearchField("Edward Norton");
+
+		String actorBirthDate = page.getActorBirthDateText();
+		Assert.assertEquals(actorBirthDate, "Дата рождения: 18.08.1969");
+
+		String actorBirthPlace = page.getActorBirthPlaceText();
+		Assert.assertEquals(actorBirthPlace, "Место рождения: США, Бостон");
+
+		page.clickOnActorHeading();
+
+	}
+
+	@Test
+	public void findMovieActorByAvatar() {
+		generateReport();
+
+		webDriver.get("https://my-hit.org");
+		GeneralSearchPage page = PageFactory.initElements(webDriver, GeneralSearchPage.class);
+		ActorPage actorPage = PageFactory.initElements(webDriver, ActorPage.class);
+
+		WebDriverWait wait = new WebDriverWait(webDriver, 10);
+		wait.until(ExpectedConditions.visibilityOf(page.searchBar));
+
+		page.clickOnSearch();
+		page.typeIntoSearchField("Горячие головы");
+
+		wait.until(ExpectedConditions.visibilityOf(page.searchResultHeading));
+		page.clickOnMovieHeading();
+		page.scrollToActorsList();
+
 		Screen screen = new Screen();
-		Pattern moviePoster = new Pattern("src/test/resources/BlackMirror.png");
-		webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		Pattern actorImg = new Pattern("src/test/resources/Charlie_Sheen.png");
 		try {
-			screen.doubleClick(moviePoster);
+			screen.doubleClick(actorImg);
 		} catch (FindFailed e) {
 			e.printStackTrace();
 		}
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
 
-	@Test(dependsOnMethods = { "findMovieByImg" })
-	public void scrollingDownToFindActorList() {
-		generateReport();
-		MoviePage page = PageFactory.initElements(webDriver, MoviePage.class);
-		page.scrollToActorsList();
-	}
+		String actorHeading = actorPage.getActorHeadingText();
+		Assert.assertEquals(actorHeading, "Чарли Шин");
 
-	@Test(dependsOnMethods = { "scrollingDownToFindActorList" })
-	public void findActor() {
-		generateReport();
-		MoviePage page = PageFactory.initElements(webDriver, MoviePage.class);
-
-		page.clickingOnFirstActor();
-	}
-
-	@Test(dependsOnMethods = { "findActor" })
-	public void verifyActorName() {
-		generateReport();
-		ActorPage page = PageFactory.initElements(webDriver, ActorPage.class);
-		webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-		Assert.assertEquals("Rory Kinnear", page.getActorName());
 	}
 
 	@Step("Report generating")

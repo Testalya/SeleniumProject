@@ -15,13 +15,12 @@ public class ActorPage {
 		this.webDriver = webDriver;
 	}
 
-	@FindBy(how = How.XPATH, using = "html/body/div[3]/div/div[2]/h4")
+	@FindBy(how = How.XPATH, using = "html/body/div[3]/div/div[2]/h1")
 	@CacheLookup
-	public WebElement actorNameHeading;
+	public WebElement actorHeading;
 
-	public String getActorName() {
-		String actorName = actorNameHeading.getText();
-		return actorName;
+	public String getActorHeadingText() {
+		return actorHeading.getText();
 	}
-	
+
 }
