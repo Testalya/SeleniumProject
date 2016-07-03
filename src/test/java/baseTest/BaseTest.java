@@ -14,7 +14,7 @@ public abstract class BaseTest {
 	@BeforeMethod(alwaysRun = true)
 	@Parameters({ "browserName" })
 	public void browserOpened(@Optional("firefox") String browserName) {
-		webDriver = WebDriverFactory.getInstanse(browserName);
+		webDriver = WebDriverFactory.getInstanse();
 		// webDriver.manage().window().maximize();
 		Dimension targetSize = new Dimension(1440, 900);
 		webDriver.manage().window().setSize(targetSize);

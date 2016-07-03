@@ -11,16 +11,18 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import baseTest.BaseTest;
 import pages.GeneralSearchPage;
-import pages.LogInPage;
+import pages.LoginPage;
 import pages.MoviePage;
 import pages.ActorPage;
 import ru.yandex.qatools.allure.annotations.Step;
+import ru.yandex.qatools.properties.PropertyLoader;
+import utils.PropertyReader;
 
 public class MyHitTests extends BaseTest {
 
 	@DataProvider(name = "loginCredentials")
 	public Object[][] getLoginData() {
-		return new Object[][] { { "TestAccount1", "1q2w3e4r5t6y" }, { "testalya@yahoo.com", "1q2w3e4r5t6y" } };
+		return new Object[][] { {PropertyReader.loadProperty().getProperty("USERNAME"), PropertyReader.loadProperty().getProperty("PASSWORD") }, { PropertyReader.loadProperty().getProperty("EMAIL"), PropertyReader.loadProperty().getProperty("PASSWORD") } };
 	}
 
 	@Test(dataProvider = "loginCredentials")
@@ -28,7 +30,7 @@ public class MyHitTests extends BaseTest {
 		generateReport();
 
 		webDriver.get("https://my-hit.org");
-		LogInPage page = PageFactory.initElements(webDriver, LogInPage.class);
+		LoginPage page = PageFactory.initElements(webDriver, LoginPage.class);
 
 		page.clickOnLoginButton();
 

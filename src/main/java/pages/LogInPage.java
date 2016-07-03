@@ -6,16 +6,9 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class LogInPage {
+public class LoginPage extends BasePage {
 
-	WebDriver webDriver;
-
-	public LogInPage(WebDriver webDriver) {
-		super();
-		this.webDriver = webDriver;
-	}
-
-	@FindBy(how = How.XPATH, using = "html/body/div[1]/div/div[2]/ul[2]/li/button")
+	@FindBy(how = How.XPATH, using = ".//*[@class='btn btn-success']")
 	@CacheLookup
 	public WebElement loginButton;
 
@@ -53,6 +46,7 @@ public class LogInPage {
 
 	public void clickOnSubmitButton() {
 		submitButton.click();
+		return;
 	}
 
 }

@@ -16,6 +16,7 @@
 		<!--Test properties -->
 		<testng.version>6.9.10</testng.version>
 		<selenium.version>2.52.0</selenium.version>
+		<sikuli.version>1.1.0</sikuli.version>
 
 		<!--Allure properties -->
 		<aspectj.version>1.8.0</aspectj.version>
@@ -53,7 +54,7 @@
 		<dependency>
 			<groupId>com.sikulix</groupId>
 			<artifactId>sikulixapi</artifactId>
-			<version>1.1.0</version>
+			<version>${sikuli.version}</version>
 		</dependency>
 	</dependencies>
 

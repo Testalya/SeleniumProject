@@ -6,11 +6,11 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class ActorPage {
+public class ActorPage extends BasePage{
 
 	WebDriver webDriver;
 
-	public ActorPage(WebDriver webDriver) {
+	public ActorPage(WebDriver webDriver)  {
 		super();
 		this.webDriver = webDriver;
 	}
