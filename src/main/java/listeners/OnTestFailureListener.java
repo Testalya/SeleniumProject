@@ -13,10 +13,11 @@ import org.testng.TestListenerAdapter;
 import factory.WebDriverFactory;
 import ru.yandex.qatools.allure.annotations.Attachment;
 import ru.yandex.qatools.allure.annotations.Step;
+import utils.PropertyReader;
 
 public class OnTestFailureListener extends TestListenerAdapter {
 	public void onTestFailure(ITestResult arg0) {
-		testScreenshotOnFinish(WebDriverFactory.getInstanse("firefox"));
+		testScreenshotOnFinish(WebDriverFactory.getInstanse());
 	}
 
 	@Step("Screenshot")
@@ -24,7 +25,7 @@ public class OnTestFailureListener extends TestListenerAdapter {
 		takeScreenshot(webDriver);
 	}
 
-	@Attachment(value = "Screenshot of the failed test", type = "image/png")
+	@Attachment(value = "Screenshot of the failed test", type = "image/jpeg")
 	public byte[] takeScreenshot(WebDriver webDriver) {
 		File screenshot = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
 		byte[] screen = null;

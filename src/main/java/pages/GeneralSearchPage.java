@@ -9,7 +9,7 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class GeneralSearchPage {
+public class GeneralSearchPage extends BasePage{
 
 	WebDriver webDriver;
 

@@ -1,6 +1,7 @@
 package pages;
 
 import factory.WebDriverFactory;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
 /**
@@ -8,7 +9,9 @@ import org.openqa.selenium.support.PageFactory;
  */
 public class BasePage {
 
+    static public WebDriver driver = WebDriverFactory.getInstanse();
+
     public static <T extends BasePage> T initPage(Class<T> pageClass) {
-        return PageFactory.initElements(WebDriverFactory.getInstanse(), pageClass);
+        return PageFactory.initElements(driver, pageClass);
     }
 }
