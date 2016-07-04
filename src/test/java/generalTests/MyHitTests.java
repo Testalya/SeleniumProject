@@ -37,7 +37,7 @@ public class MyHitTests extends BaseTest {
         driver.get(URL);
         HomePage homePage = HomePage.initPage(HomePage.class);
 
-        //Assert.assertEquals(homePage.getLoginModalHeadingText(), "Вход или регистрация");
+        //Assert.assertEquals(homePage.getLoginModalHeadingText(), "Ð’Ñ…Ð¾Ð´ Ð¸Ð»Ð¸ Ñ€ÐµÐ³Ð¸Ñ�Ñ‚Ñ€Ð°Ñ†Ð¸Ñ�");
         homePage.performLogin(name, password);
     }
 /*
@@ -55,35 +55,23 @@ public class MyHitTests extends BaseTest {
         page.typeIntoSearchField("Black Mirror");
 
         String producerName = page.getProducerNameText();
-        Assert.assertEquals(producerName, "Отто Баферст");
+        Assert.assertEquals(producerName, "ÐžÑ‚Ñ‚Ð¾ Ð‘Ð°Ñ„ÐµÑ€Ñ�Ñ‚");
 
         page.clickOnMovieHeading();
 
         String movieHeader = moviePage.getTextOfMovieHeader();
-        Assert.assertEquals(movieHeader, "Черное зеркало (1-3 сезон)");
+        Assert.assertEquals(movieHeader, "Ð§ÐµÑ€Ð½Ð¾Ðµ Ð·ÐµÑ€ÐºÐ°Ð»Ð¾ (1-3 Ñ�ÐµÐ·Ð¾Ð½)");
     }
-
-    @Test(enabled = false)
+*/
+    @Test
     public void searchMovieByDropDownMenuAndFilters() {
 
-        webDriver.get(PropertyReader.loadProperty().getProperty("BASE_URL"));
-        GeneralSearchPage page = PageFactory.initElements(webDriver, GeneralSearchPage.class);
-
-        page.clickOnTvSeriasButton();
-        WebDriverWait wait = new WebDriverWait(webDriver, 10);
-        wait.until(ExpectedConditions.visibilityOf(page.tvSeriesDropdown));
-        Assert.assertTrue(page.tvSeriesDropdown.isDisplayed());
-
-        page.clickOnPsychologicalMovieType();
-        String filteredPageTitle = webDriver.getTitle();
-        Assert.assertEquals(filteredPageTitle, "Сериалы онлайн: жанр - психологический.");
-
-        page.selectPopularFilter();
-        page.clickOnSelectDownButton();
-        page.selectForAllTimeFilter();
-
+        driver.get(PropertyReader.loadProperty().getProperty("BASE_URL"));
+        GeneralSearchPage searchPage = GeneralSearchPage.initPage(GeneralSearchPage.class);
+        
+        searchPage.performSearchByDropdown();
     }
-
+/*
     @Test(enabled = false)
     public void findActorBySearchField() {
 
@@ -98,10 +86,10 @@ public class MyHitTests extends BaseTest {
         page.typeIntoSearchField("Edward Norton");
 
         String actorBirthDate = page.getActorBirthDateText();
-        Assert.assertEquals(actorBirthDate, "Дата рождения: 18.08.1969");
+        Assert.assertEquals(actorBirthDate, "Ð”Ð°Ñ‚Ð° Ñ€Ð¾Ð¶Ð´ÐµÐ½Ð¸Ñ�: 18.08.1969");
 
         String actorBirthPlace = page.getActorBirthPlaceText();
-        Assert.assertEquals(actorBirthPlace, "Место рождения: США, Бостон");
+        Assert.assertEquals(actorBirthPlace, "ÐœÐµÑ�Ñ‚Ð¾ Ñ€Ð¾Ð¶Ð´ÐµÐ½Ð¸Ñ�: Ð¡Ð¨Ð�, Ð‘Ð¾Ñ�Ñ‚Ð¾Ð½");
 
         page.clickOnActorHeading();
 
@@ -118,7 +106,7 @@ public class MyHitTests extends BaseTest {
         wait.until(ExpectedConditions.visibilityOf(page.searchBar));
 
         page.clickOnSearch();
-        page.typeIntoSearchField("Горячие головы");
+        page.typeIntoSearchField("Ð“Ð¾Ñ€Ñ�Ñ‡Ð¸Ðµ Ð³Ð¾Ð»Ð¾Ð²Ñ‹");
 
         wait.until(ExpectedConditions.visibilityOf(page.searchResultHeading));
         page.clickOnMovieHeading();
@@ -133,7 +121,7 @@ public class MyHitTests extends BaseTest {
         }
 
         String actorHeading = actorPage.getActorHeadingText();
-        Assert.assertEquals(actorHeading, "Чарли Шин");
+        Assert.assertEquals(actorHeading, "Ð§Ð°Ñ€Ð»Ð¸ Ð¨Ð¸Ð½");
 
     }*/
 }

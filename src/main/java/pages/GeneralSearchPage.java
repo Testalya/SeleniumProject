@@ -1,5 +1,7 @@
 package pages;
 
+import static pages.BasePage.driver;
+
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,6 +10,11 @@ import org.openqa.selenium.internal.Locatable;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
+import ru.yandex.qatools.allure.annotations.Step;
 
 public class GeneralSearchPage extends BasePage{
 
@@ -121,6 +128,18 @@ public class GeneralSearchPage extends BasePage{
 
 	public void clickingOnFirstActor() {
 		firstMainActor.click();
+	}
+	
+	@Step("Searching the movie using dropdown menu and filters")
+	public void performSearchByDropdown(){
+		clickOnTvSeriasButton();
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.visibilityOf(tvSeriesDropdown));
+		Assert.assertTrue(tvSeriesDropdown.isDisplayed());
+		clickOnPsychologicalMovieType();
+		selectPopularFilter();
+		clickOnSelectDownButton();
+		selectForAllTimeFilter();
 	}
 
 }
