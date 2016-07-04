@@ -33,7 +33,7 @@ public class HomePage extends BasePage {
         return loginModalHeading.getText();
     }
 
-    @Step("Perform login on site")
+    @Step("Perform login on site with {0} login and {1} password")
     public GeneralSearchPage performLogin(String name, String password) {
 
         loginButton.click();

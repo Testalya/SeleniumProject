@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:test-suite xmlns:ns2="urn:model.allure.qatools.yandex.ru" start="1467579609346" stop="1467579652504" version="1.4.0">
+    <name>Firefox Test Suite</name>
+    <test-cases>
+        <test-case start="1467579619675" stop="1467579635559" status="passed">
+            <name>login[TestAccount1,1q2w3e4r5t6y]</name>
+            <title>Perform login on site with {0} login and {1} password</title>
+            <steps>
+                <step start="1467579631714" stop="1467579635557" status="passed">
+                    <name>performLogin[TestAccount1, 1q2w3e4r5t6y]</name>
+                    <title>Perform login on site with TestAccount1 login and 1q2w3e4r5t6y password</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments/>
+            <labels/>
+        </test-case>
+        <test-case start="1467579639836" stop="1467579652014" status="passed">
+            <name>login[testalya@yahoo.com,1q2w3e4r5t6y]</name>
+            <title>Perform login on site with {0} login and {1} password</title>
+            <steps>
+                <step start="1467579648971" stop="1467579652013" status="passed">
+                    <name>performLogin[testalya@yahoo.com, 1q2w3e4r5t6y]</name>
+                    <title>Perform login on site with testalya@yahoo.com login and 1q2w3e4r5t6y password</title>
+                    <attachments/>
+                    <steps/>
+                </step>
+            </steps>
+            <attachments/>
+            <labels/>
+        </test-case>
+    </test-cases>
+    <labels>
+        <label name="framework" value="TestNG"/>
+        <label name="feature" value="MyHit"/>
+        <label name="language" value="JAVA"/>
+    </labels>
+</ns2:test-suite>

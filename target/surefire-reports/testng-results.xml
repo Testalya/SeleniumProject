@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="2" passed="2">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Firefox Test Suite" duration-ms="42932" started-at="2016-07-03T21:00:09Z" finished-at="2016-07-03T21:00:52Z">
+    <groups>
+    </groups>
+    <test name="MyHit" duration-ms="42932" started-at="2016-07-03T21:00:09Z" finished-at="2016-07-03T21:00:52Z">
+      <class name="generalTests.MyHitTests">
+        <test-method status="PASS" signature="browserOpened(java.lang.String)[pri:0, instance:generalTests.MyHitTests@66153688]" name="browserOpened" is-config="true" duration-ms="10238" started-at="2016-07-04T00:00:09Z" finished-at="2016-07-04T00:00:19Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[firefox]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- browserOpened -->
+        <test-method status="PASS" signature="login(java.lang.String, java.lang.String)[pri:0, instance:generalTests.MyHitTests@66153688]" name="login" duration-ms="15908" started-at="2016-07-04T00:00:19Z" data-provider="loginCredentials" finished-at="2016-07-04T00:00:35Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[TestAccount1]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[1q2w3e4r5t6y]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- login -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:generalTests.MyHitTests@66153688]" name="tearDown" is-config="true" duration-ms="391" started-at="2016-07-04T00:00:35Z" finished-at="2016-07-04T00:00:36Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="browserOpened(java.lang.String)[pri:0, instance:generalTests.MyHitTests@66153688]" name="browserOpened" is-config="true" duration-ms="3635" started-at="2016-07-04T00:00:36Z" finished-at="2016-07-04T00:00:39Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[firefox]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- browserOpened -->
+        <test-method status="PASS" signature="login(java.lang.String, java.lang.String)[pri:0, instance:generalTests.MyHitTests@66153688]" name="login" duration-ms="12177" started-at="2016-07-04T00:00:39Z" data-provider="loginCredentials" finished-at="2016-07-04T00:00:52Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[testalya@yahoo.com]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[1q2w3e4r5t6y]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- login -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:generalTests.MyHitTests@66153688]" name="tearDown" is-config="true" duration-ms="223" started-at="2016-07-04T00:00:52Z" finished-at="2016-07-04T00:00:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- generalTests.MyHitTests -->
+    </test> <!-- MyHit -->
+  </suite> <!-- Firefox Test Suite -->
+</testng-results>

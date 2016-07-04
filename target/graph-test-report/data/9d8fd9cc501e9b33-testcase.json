@@ -1,0 +1,49 @@
+{
+  "uid" : "9d8fd9cc501e9b33",
+  "name" : "login[TestAccount1,1q2w3e4r5t6y]",
+  "title" : "Perform login on site with {0} login and {1} password",
+  "time" : {
+    "start" : 1467579619675,
+    "stop" : 1467579635559,
+    "duration" : 15884
+  },
+  "summary" : {
+    "attachments" : 0,
+    "steps" : 1
+  },
+  "failure" : null,
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "PASSED",
+  "steps" : [ {
+    "name" : "performLogin[TestAccount1, 1q2w3e4r5t6y]",
+    "title" : "Perform login on site with TestAccount1 login and 1q2w3e4r5t6y password",
+    "time" : {
+      "start" : 1467579631714,
+      "stop" : 1467579635557,
+      "duration" : 3843
+    },
+    "summary" : {
+      "attachments" : 0,
+      "steps" : 0
+    },
+    "status" : "PASSED",
+    "attachments" : [ ],
+    "steps" : [ ]
+  } ],
+  "attachments" : [ ],
+  "labels" : [ {
+    "name" : "framework",
+    "value" : "TestNG"
+  }, {
+    "name" : "feature",
+    "value" : "MyHit"
+  }, {
+    "name" : "language",
+    "value" : "JAVA"
+  }, {
+    "name" : "story",
+    "value" : "Without story"
+  } ],
+  "parameters" : [ ]
+}

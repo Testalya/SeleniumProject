@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="TestingFirefox" verbose="10">
+<suite name="Firefox Test Suite" verbose="10">
 	<parameter name="browserName" value="firefox"/>	
-	<test name="MyHit framework">
+	<test name="MyHit">
 		<classes>			
 			<class name="generalTests.MyHitTests" />
 		</classes>
