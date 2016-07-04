@@ -11,24 +11,24 @@ import java.util.Properties;
  */
 public class PropertyReader {
 
-    private static final String CONFIG_FILE_PATH = "src/main/resources/configuration.properties";
+	private static final String CONFIG_FILE_PATH = "src/main/resources/configuration.properties";
 
-    public static Properties loadProperty() {
+	public static Properties loadProperty() {
 
-        InputStream input = null;
-        Properties properties = new Properties();
+		InputStream input = null;
+		Properties properties = new Properties();
 
-        try {
-            input = new FileInputStream(CONFIG_FILE_PATH);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
-            properties.load(input);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+		try {
+			input = new FileInputStream(CONFIG_FILE_PATH);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		try {
+			properties.load(input);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-        return properties;
-    }
+		return properties;
+	}
 }

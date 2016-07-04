@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Firefox Test Suite" verbose="10">
 	<parameter name="browserName" value="firefox"/>	
-	<test name="MyHit">
+	<test name="MyHit framework">
 		<classes>			
 			<class name="generalTests.MyHitTests" />
 		</classes>

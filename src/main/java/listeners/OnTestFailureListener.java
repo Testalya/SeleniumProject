@@ -9,11 +9,9 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
-
 import factory.WebDriverFactory;
 import ru.yandex.qatools.allure.annotations.Attachment;
 import ru.yandex.qatools.allure.annotations.Step;
-import utils.PropertyReader;
 
 public class OnTestFailureListener extends TestListenerAdapter {
 	public void onTestFailure(ITestResult arg0) {
