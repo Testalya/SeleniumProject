@@ -1,18 +1,18 @@
 package generalTests;
 
 import baseTest.BaseTest;
+import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.GeneralSearchPage;
 import pages.HomePage;
+import pages.MoviePage;
 import ru.yandex.qatools.allure.annotations.Title;
 import utils.PropertyReader;
 
 import static pages.BasePage.driver;
 
 public class MyHitTests extends BaseTest {
-
-	public final String URL = PropertyReader.loadProperty().getProperty("BASE_URL");
 
 	@DataProvider(name = "loginCredentials")
 	public Object[][] getLoginData() {
@@ -23,7 +23,7 @@ public class MyHitTests extends BaseTest {
 						PropertyReader.loadProperty().getProperty("PASSWORD") } };
 	}
 
-	@Test(dataProvider = "loginCredentials")
+	@Test(dataProvider = "loginCredentials",enabled = false)
 	@Title("Perform login on site with data from dataprovider")
 	public void login(String name, String password) {
 
@@ -34,38 +34,48 @@ public class MyHitTests extends BaseTest {
 	}
 
 	@Test(enabled = false)
+	@Title("Searching movie through Search Field")
 	public void findMovieBySearchField() {
-		driver.get(PropertyReader.loadProperty().getProperty("BASE_URL"));
+		driver.get(URL);
 		GeneralSearchPage searchPage = GeneralSearchPage.initPage(GeneralSearchPage.class);
 
 		searchPage.findMovieBySearch("Black Mirror");
 	}
 
-	@Test
+	@Test(enabled = false)
 	@Title("Perform search the movie via dropdown menu")
 	public void searchMovieByDropDownMenu() {
-		driver.get(PropertyReader.loadProperty().getProperty("BASE_URL"));
+		driver.get(URL);
 		GeneralSearchPage searchPage = GeneralSearchPage.initPage(GeneralSearchPage.class);
 
 		searchPage.performSearchByDropdown();
 	}
 
-	@Test
+	@Test(enabled = false)
 	@Title("Find an actor using Search field")
 	public void findActorBySearchField() {
-		driver.get(PropertyReader.loadProperty().getProperty("BASE_URL"));
+		driver.get(URL);
 		GeneralSearchPage searchPage = GeneralSearchPage.initPage(GeneralSearchPage.class);
 
 		searchPage.findActorBySearch("Edward Norton");
 	}
 
-	@Test
+	@Test(enabled = false)
 	@Title("Find movie actor by Avatar")
 	public void findMovieActorByAvatar() {
-		driver.get(PropertyReader.loadProperty().getProperty("BASE_URL"));
+		driver.get(URL);
 		GeneralSearchPage searchPage = GeneralSearchPage.initPage(GeneralSearchPage.class);
 
 		searchPage.findMovieByImg("Горячие головы");
+	}
+
+	@Test
+	public void tempImgTest(){
+		driver.get(URL);
+		MoviePage moviePage = MoviePage.initPage(MoviePage.class);
+
+		Assert.assertTrue(moviePage.compareActorImages());
+
 
 	}
 }

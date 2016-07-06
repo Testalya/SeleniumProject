@@ -2,9 +2,20 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite guice-stage="DEVELOPMENT" verbose="0" name="Failed suite [Firefox Test Suite]">
   <parameter name="browserName" value="firefox"/>
-  <test name="MyHit">
+  <test name="MyHit framework">
     <classes>
       <class name="generalTests.MyHitTests"/>
     </classes>
-  </test> <!-- MyHit -->
+  </test> <!-- MyHit framework -->
+  <test name="MyHit framework(failed)">
+    <classes>
+      <class name="generalTests.MyHitTests">
+        <methods>
+          <include name="tempImgTest"/>
+          <include name="browserOpened"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- generalTests.MyHitTests -->
+    </classes>
+  </test> <!-- MyHit framework(failed) -->
 </suite> <!-- Failed suite [Firefox Test Suite] -->

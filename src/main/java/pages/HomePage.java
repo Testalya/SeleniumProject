@@ -24,14 +24,9 @@ public class HomePage extends BasePage {
     @CacheLookup
     public WebElement passwordField;
 
-    @FindBy(how = How.XPATH, using = ".//*[@id='user_login_form']/div[2]/button")
+    @FindBy(how = How.XPATH, using = ".//*[@id='user_login_form']/div/*[@class='btn btn-success']")
     @CacheLookup
     public WebElement submitButton;
-
-    public String getLoginModalHeadingText() {
-
-        return loginModalHeading.getText();
-    }
 
     @Step("Perform login on site with {0} login and {1} password")
     public GeneralSearchPage performLogin(String name, String password) {
@@ -50,5 +45,4 @@ public class HomePage extends BasePage {
 
         return initPage(GeneralSearchPage.class);
     }
-
 }

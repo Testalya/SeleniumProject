@@ -22,6 +22,7 @@
 		<aspectj.version>1.8.0</aspectj.version>
 		<allure.version>1.4.0</allure.version>
 		<allure.plugin.version>2.0</allure.plugin.version>
+		<allure.ashot>1.5.2</allure.ashot>
 	</properties>
 
 	<dependencies>
@@ -39,6 +40,11 @@
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-api</artifactId>
 			<version>${selenium.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ru.yandex.qatools.ashot</groupId>
+			<artifactId>ashot</artifactId>
+			<version>${allure.ashot}</version>
 		</dependency>
 		<dependency>
 			<groupId>ru.yandex.qatools.allure</groupId>

@@ -30,6 +30,10 @@ public class GeneralSearchPage extends BasePage {
 	@CacheLookup
 	public WebElement searchBar;
 
+	@FindBy(how = How.XPATH, using = ".//*[@class='input-group-btn']/button")
+	@CacheLookup
+	public WebElement searchButton;
+
 	@FindBy(how = How.XPATH, using = ".//*[@id='film-list']/div[1]/div[2]/ul/li[5]/a[1]")
 	@CacheLookup
 	public WebElement producerName;
@@ -213,6 +217,7 @@ public class GeneralSearchPage extends BasePage {
 		Pattern actorImg = new Pattern("src/test/resources/Charlie_Sheen.png");
 		try {
 			screen.doubleClick(actorImg);
+
 		} catch (FindFailed e) {
 			e.printStackTrace();
 		}

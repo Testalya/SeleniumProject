@@ -1,8 +1,8 @@
 listeners/OnTestFailureListener.class
 utils/PropertyReader.class
 pages/HomePage.class
+pages/SearchResultPage.class
 pages/BasePage.class
 pages/MoviePage.class
 pages/GeneralSearchPage.class
 factory/WebDriverFactory.class
-pages/ActorPage.class
