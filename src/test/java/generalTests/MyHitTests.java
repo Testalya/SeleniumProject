@@ -10,8 +10,6 @@ import pages.MoviePage;
 import ru.yandex.qatools.allure.annotations.Title;
 import utils.PropertyReader;
 
-import static pages.BasePage.driver;
-
 public class MyHitTests extends BaseTest {
 
 	@DataProvider(name = "loginCredentials")
@@ -23,59 +21,50 @@ public class MyHitTests extends BaseTest {
 						PropertyReader.loadProperty().getProperty("PASSWORD") } };
 	}
 
-	@Test(dataProvider = "loginCredentials",enabled = false)
+	@Test(dataProvider = "loginCredentials")
 	@Title("Perform login on site with data from dataprovider")
 	public void login(String name, String password) {
 
-		driver.get(URL);
 		HomePage homePage = HomePage.initPage(HomePage.class);
-
 		homePage.performLogin(name, password);
 	}
 
-	@Test(enabled = false)
+	@Test
 	@Title("Searching movie through Search Field")
 	public void findMovieBySearchField() {
-		driver.get(URL);
-		GeneralSearchPage searchPage = GeneralSearchPage.initPage(GeneralSearchPage.class);
 
+		GeneralSearchPage searchPage = GeneralSearchPage.initPage(GeneralSearchPage.class);
 		searchPage.findMovieBySearch("Black Mirror");
 	}
 
-	@Test(enabled = false)
+	@Test
 	@Title("Perform search the movie via dropdown menu")
 	public void searchMovieByDropDownMenu() {
-		driver.get(URL);
-		GeneralSearchPage searchPage = GeneralSearchPage.initPage(GeneralSearchPage.class);
 
+		GeneralSearchPage searchPage = GeneralSearchPage.initPage(GeneralSearchPage.class);
 		searchPage.performSearchByDropdown();
 	}
 
-	@Test(enabled = false)
+	@Test
 	@Title("Find an actor using Search field")
 	public void findActorBySearchField() {
-		driver.get(URL);
-		GeneralSearchPage searchPage = GeneralSearchPage.initPage(GeneralSearchPage.class);
 
+		GeneralSearchPage searchPage = GeneralSearchPage.initPage(GeneralSearchPage.class);
 		searchPage.findActorBySearch("Edward Norton");
 	}
 
-	@Test(enabled = false)
+	@Test
 	@Title("Find movie actor by Avatar")
 	public void findMovieActorByAvatar() {
-		driver.get(URL);
-		GeneralSearchPage searchPage = GeneralSearchPage.initPage(GeneralSearchPage.class);
 
+		GeneralSearchPage searchPage = GeneralSearchPage.initPage(GeneralSearchPage.class);
 		searchPage.findMovieByImg("Горячие головы");
 	}
 
 	@Test
-	public void tempImgTest(){
-		driver.get(URL);
+	public void tempImgTest() {
+
 		MoviePage moviePage = MoviePage.initPage(MoviePage.class);
-
 		Assert.assertTrue(moviePage.compareActorImages());
-
-
 	}
 }

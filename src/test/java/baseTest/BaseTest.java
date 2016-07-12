@@ -12,20 +12,21 @@ import static pages.BasePage.driver;
 
 public abstract class BaseTest {
 
-    public final String URL = PropertyReader.loadProperty().getProperty("BASE_URL");
+	public final String URL = PropertyReader.loadProperty().getProperty("BASE_URL");
 
-    @BeforeMethod(alwaysRun = true)
-    @Parameters({"browserName"})
-    public void browserOpened(@Optional("firefox") String browserName) {
-        driver = WebDriverFactory.getInstanse();
-        Dimension targetSize = new Dimension(1440, 900);
-        driver.manage().window().setSize(targetSize);
-    }
+	@BeforeMethod(alwaysRun = true)
+	@Parameters({ "browserName" })
+	public void browserOpened(@Optional("firefox") String browserName) {
+		driver = WebDriverFactory.getInstanse();
+		Dimension targetSize = new Dimension(1440, 900);
+		driver.get(URL);
+		driver.manage().window().setSize(targetSize);
+	}
 
-    @AfterMethod(alwaysRun = true)
-    public void tearDown() {
-        if (driver != null) {
-            WebDriverFactory.killInstance();
-        }
-    }
+	@AfterMethod(alwaysRun = true)
+	public void tearDown() {
+		if (driver != null) {
+			WebDriverFactory.killInstance();
+		}
+	}
 }

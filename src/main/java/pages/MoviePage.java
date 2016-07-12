@@ -18,74 +18,73 @@ import java.io.IOException;
  */
 public class MoviePage extends BasePage {
 
-    private static String imgPath = "src/test/resources/Charlie_Sheen.png";
+	private static String imgPath = "src/test/resources/Charlie_Sheen.png";
 
-    @FindBy(how = How.ID, using = "search-navbar-q")
-    @CacheLookup
-    public WebElement searchBar;
+	@FindBy(how = How.ID, using = "search-navbar-q")
+	@CacheLookup
+	public WebElement searchBar;
 
+	@FindBy(how = How.XPATH, using = ".//a[contains(text(),'Hot Shots!')]")
+	@CacheLookup
+	public WebElement movieTitle;
 
-    @FindBy(how = How.XPATH, using = ".//a[contains(text(),'Hot Shots!')]")
-    @CacheLookup
-    public WebElement movieTitle;
+	@FindBy(how = How.XPATH, using = ".//a[contains(text(),'Charlie Sheen')]")
+	@CacheLookup
+	public WebElement actorName;
 
-    @FindBy(how = How.XPATH, using = ".//a[contains(text(),'Charlie Sheen')]")
-    @CacheLookup
-    public WebElement actorName;
+	@FindBy(how = How.XPATH, using = "//img[contains(@alt, 'Чарли Шин')]")
+	@CacheLookup
+	public WebElement actorImage;
 
-    @FindBy(how = How.XPATH, using = "//img[contains(@alt, 'Чарли Шин')]")
-    @CacheLookup
-    public WebElement actorImage;
+	public String getMovieTitle() {
+		return movieTitle.getText();
+	}
 
-    public String getMovieTitle() {
-        return movieTitle.getText();
-    }
+	public String getActorName() {
+		return actorName.getText();
+	}
 
-    public String getActorName() {
-        return actorName.getText();
-    }
+	public String getActorImage() {
+		return actorImage.getText();
+	}
 
-    public String getActorImage() {
-        return actorImage.getText();
-    }
+	public void typeIntoSearchField(String a) {
+		searchBar.sendKeys(a + Keys.ENTER);
+	}
 
-    public void typeIntoSearchField(String a) {
-        searchBar.sendKeys(a + Keys.ENTER);
-    }
+	public void clickOnSearch() {
+		searchBar.click();
+	}
 
-    public void clickOnSearch() {
-        searchBar.click();
-    }
+	public boolean compareActorImages() {
 
-    public boolean compareActorImages() {
+		clickOnSearch();
+		typeIntoSearchField(PropertyReader.loadProperty().getProperty("MOVIE"));
 
-        clickOnSearch();
-        typeIntoSearchField(PropertyReader.loadProperty().getProperty("MOVIE"));
+		BufferedImage expectedImage = null;
 
-        BufferedImage expectedImage = null;
+		try {
+			expectedImage = ImageIO.read(new File(imgPath));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-        try {
-            expectedImage = ImageIO.read(new File(imgPath));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+		BufferedImage actualImage = new AShot().takeScreenshot(driver, actorImage).getImage();
 
-        BufferedImage actualImage = new AShot().takeScreenshot(driver, actorImage).getImage();
+		return isBufferedImagesEqual(expectedImage, actualImage);
+	}
 
-        return isBufferedImagesEqual(expectedImage, actualImage);
-    }
-
-    private boolean isBufferedImagesEqual(BufferedImage img1, BufferedImage img2) {
-        if (img1.getWidth() == img2.getWidth() && img1.getHeight() == img2.getHeight()) {
-            for (int x = 0; x < img1.getWidth(); x++) {
-                for (int y = 0; y < img1.getHeight(); y++) {
-                    if (img1.getRGB(x, y) != img2.getRGB(x, y))
-                        return false;
-                }
-            }
-        } else {
-            return false;
-        }
-        return true;
-    }
+	private boolean isBufferedImagesEqual(BufferedImage img1, BufferedImage img2) {
+		if (img1.getWidth() == img2.getWidth() && img1.getHeight() == img2.getHeight()) {
+			for (int x = 0; x < img1.getWidth(); x++) {
+				for (int y = 0; y < img1.getHeight(); y++) {
+					if (img1.getRGB(x, y) != img2.getRGB(x, y))
+						return false;
+				}
+			}
+		} else {
+			return false;
+		}
+		return true;
+	}
 }
